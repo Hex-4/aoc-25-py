@@ -8,15 +8,19 @@ zerocount = 0
 print("starting...")
 
 def spin(direction, distance):
+    global zerocount
     global position
+    direction_int = 1
     if direction == "L":
-        position -= distance
-        print("spinning left " + str(distance))
-    elif direction == "R":
-        position += distance
-        print("spinning right " + str(distance))
+        direction_int = -1
 
-    position = position % 100
+    for click in range(distance):
+        position += direction_int
+        position = position % 100
+        if position == 0:
+            zerocount += 1
+
+
 
 for line in lines:
     if line == "":
@@ -28,8 +32,7 @@ for line in lines:
 
     spin(line[0], distance)
 
-    if position == 0:
-        zerocount += 1
+    
 
 
 print("FINISHED: " + str(zerocount))
