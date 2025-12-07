@@ -35,16 +35,8 @@ for start, end in ranges[1:]:
 
 print(merged)
 
-for line in lines:
-    if line == "" or "-" in line:
-        continue
-    else:
-        n = int(line)
-        for start, end in merged:
-            if n >= start and n <= end:
-                solution += 1
-                print(f"{n} is within {start}-{end}!")
-                break
+for start, end in merged:
+    solution += (end - start) + 1
 
 
 
